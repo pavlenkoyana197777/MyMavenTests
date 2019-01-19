@@ -2,18 +2,14 @@ package ru.stqa.selenium.pages;
 
 
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 
 
 public class HomeHelper extends Page
 {
-
-
-
 
     @FindBy(xpath = "//mat-toolbar-row[@class='mat-toolbar-row']//a[1]")//поменяла чтобы охватить большую площадь нажатия кнопки
             WebElement loginButton;//"//span[contains(text(),'Login')]""//mat-toolbar-row[@class='mat-toolbar-row']//a[1]"

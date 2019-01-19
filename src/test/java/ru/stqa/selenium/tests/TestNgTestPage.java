@@ -1,20 +1,16 @@
-package ru.stqa.selenium;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
+package ru.stqa.selenium.tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
-
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 
-import ru.stqa.selenium.factory.WebDriverPool;
+import java.net.URL;
+import java.util.Random;
 
 /**
  * Page7 class for TestNG-based test classes
@@ -27,7 +23,7 @@ public class TestNgTestPage {
 
   protected WebDriver driver;
 
-  @BeforeSuite
+  /*@BeforeSuite
   public void initTestSuite() throws IOException {
     SuiteConfiguration config = new SuiteConfiguration();
     baseUrl = config.getProperty("site.url");
@@ -45,6 +41,17 @@ public class TestNgTestPage {
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
     WebDriverPool.DEFAULT.dismissAll();
+  }*/
+  @BeforeMethod//@BeforeSuite//only first
+  //запускает этот метод перед каждым тестом в основном классе
+  public void initWebDriver(){
+    driver = new ChromeDriver ();
+    driver.get("https://mish.sheygam.com/#/wellcome");
+    driver.manage().window().maximize();
+  }
+  @AfterMethod//после всех тестов выполняется этот методб=указывает на место где запускать//
+  public void  tearDown(){
+    driver.quit ();
   }
   public void waitUntilElementIsLoaded(WebDriver driver, By Locator, int time) {
     try {

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 public class ProfileHelper extends Page {
     @FindBy(xpath = "//span[contains(text(),'Cancel')]")
     WebElement cancelButton;
-    @FindBy(xpath = "//mat-icon[@mattooltip='Menu']")
+    @FindBy(xpath = "//mat-icon[@class='but mat-icon material-icons']")
     WebElement iconButton;
     @FindBy(xpath = "//h1[@class='classCentr']")  //заголовок кнопки регистрации cтраницы регистрации профиля
             WebElement header;

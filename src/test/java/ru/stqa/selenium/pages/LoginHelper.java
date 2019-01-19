@@ -32,8 +32,8 @@ public class LoginHelper extends Page {
 
     public LoginHelper enterValueToFieldEmail(String value) {
       setValueToField ( emailField,value );
-      emailField.click();
-      emailField.clear ();//очистка поляemailField.sendKeys(value);
+      //emailField.click();
+      //emailField.clear ();//очистка поляemailField.sendKeys(value);
         return this;
     }
 

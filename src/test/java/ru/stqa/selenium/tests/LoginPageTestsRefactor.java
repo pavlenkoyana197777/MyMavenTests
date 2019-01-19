@@ -1,11 +1,11 @@
-package ru.stqa.selenium;
+package ru.stqa.selenium.tests;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import ru.stqa.selenium.pages.*;
+import ru.stqa.selenium.util.DataProviders;
 
 
 public class LoginPageTestsRefactor extends TestNgTestPage {
@@ -62,4 +62,44 @@ public class LoginPageTestsRefactor extends TestNgTestPage {
         Assert.assertEquals("Wrong authorization, login or password",
                 loginPage.getAlertText());
     }
+
+    @Test (dataProviderClass = DataProviders.class,dataProvider = "LoginList")//גв скобках название метода из DataPositive
+    public void loginPositive(String email,String password)  {
+        homePage.waitUntilPageLoad()
+                .pressLoginButton();
+        loginPage.waitUntilPageLoad()
+                .enterValueToFieldEmail(email)
+                .enterValueToFieldPassword(password)
+                .pressLogInButton();
+        eventsAuthPage.waitUntilPageLoad();
+        Assert.assertEquals("Menu", eventsAuthPage.getTooltipIconMenu());
+        Assert.assertEquals("Find event",eventsAuthPage.getHeader());
+        profilePage.menuButtonClick ();
+        menuPage.waitUntilPageLoad ()
+                .pressLogOutButton ();
+        homePage.waitUntilPageLoad ();
+       Assert.assertEquals ( homePage.getHeader (),"Shabbat in the family circle" );
+driver.quit ();
+    }
+
+    @Test (dataProviderClass = DataProviders.class,dataProvider = "loginPositiveMaven")
+    public void loginPositiveMaven(String email,String password)  {
+         homePage.waitUntilPageLoad()
+                .pressLoginButton();
+        loginPage.waitUntilPageLoad()
+                .enterValueToFieldEmail(email)
+                .enterValueToFieldPassword(password)
+                .pressLogInButton();
+        eventsAuthPage.waitUntilPageLoad();
+        Assert.assertEquals("Menu", eventsAuthPage.getTooltipIconMenu());
+        Assert.assertEquals("Find event",eventsAuthPage.getHeader());
+        profilePage.menuButtonClick ();
+        menuPage.waitUntilPageLoad ()
+                .pressLogOutButton ();
+        homePage.waitUntilPageLoad ();
+        Assert.assertEquals ( homePage.getHeader (),"Shabbat in the family circle" );
+        driver.quit ();
+    }
+
+
 }

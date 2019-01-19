@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class EventsAuthHelper extends Page {//страница событий переход после лог ин возможен
     // только при заполненном профиле после создания аккаунтаю
-    @FindBy(xpath = "//mat-icon[@class='but mat-icon material-icons']")
+    @FindBy(xpath = "//mat-icon[@class='but mat-icon material-icons']")//span[@class='ng-star-inserted']//button[@class='mat-icon-button']
     WebElement menuButton;
 
     @FindBy(xpath = "//button[@class='mat-raised-button']")////span[contains(text(),'Filters')]//span[contains(text(),'Filters')]
@@ -24,6 +24,10 @@ public class EventsAuthHelper extends Page {//страница событий п
     public EventsAuthHelper waitUntilPageLoad() {
         waitUntilElementIsLoaded(driver,menuButton ,30);//mat-icon[@class='but mat-icon material-icons']
        waitUntilElementIsLoaded(driver, filterButton,30);
+        return this;
+    }
+    public EventsAuthHelper waitUntilPageLoadNoReg() {
+        waitUntilElementIsLoaded(driver,menuButton ,30);//mat-icon[@class='but mat-icon material-icons']
         return this;
     }
 

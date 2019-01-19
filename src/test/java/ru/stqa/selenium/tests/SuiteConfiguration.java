@@ -1,7 +1,6 @@
-package ru.stqa.selenium;
+package ru.stqa.selenium.tests;
 
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -23,14 +22,14 @@ public class SuiteConfiguration {
 
   public SuiteConfiguration(String fromResource) throws IOException {
     properties = new Properties();
-    properties.load(SuiteConfiguration.class.getResourceAsStream(fromResource));
+    properties.load( SuiteConfiguration.class.getResourceAsStream(fromResource));
   }
 
   public Capabilities getCapabilities() throws IOException {
     String capabilitiesFile = properties.getProperty("capabilities");
 
     Properties capsProps = new Properties();
-    capsProps.load(SuiteConfiguration.class.getResourceAsStream(capabilitiesFile));
+    capsProps.load( SuiteConfiguration.class.getResourceAsStream(capabilitiesFile));
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
     for (String name : capsProps.stringPropertyNames()) {
