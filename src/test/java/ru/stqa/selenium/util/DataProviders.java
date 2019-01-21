@@ -14,31 +14,37 @@
 
 public class DataProviders {
 
-    @DataProvider
-    public static Iterator<Object[]> loginPositiveMaven() throws IOException {
-        BufferedReader in = new BufferedReader ( new InputStreamReader ( DataProviders.class.getResourceAsStream ( "/loginPositiveMaven.data" ) ) );
-        List<Object[]> userData = new ArrayList<> (); //считывание данные построчно//Формируется лист//считывает все строчки
-//с листа куда мы заносили данные
-        for (String line = in.readLine (); line != null; line = in.readLine ()) {
-            userData.add ( line.split ( ";" ) );
-        }
+//*********************формирует лист если несколько раз используется**************//
 
-        in.close ();
-        return userData.iterator ();
+    @DataProvider
+    public static Iterator<Object[]> CreateAccountProvider() throws IOException {
+        return chooseDataFromFile("/CreateAccount.data");
     }
 
     @DataProvider
-    public static Iterator<Object[]> CreateAccount() throws IOException {
-        BufferedReader in = new BufferedReader ( new InputStreamReader ( DataProviders.class.getResourceAsStream ( "/CreateAccount.data" ) ) );
-        List<Object[]> userData = new ArrayList<> (); //считывание данные построчно//Формируется лист//считывает все строчки
-//с листа куда мы заносили данные
-        for (String line = in.readLine (); line != null; line = in.readLine ()) {
-            userData.add ( line.split ( "//" ) );
-        }
-
-        in.close ();
-        return userData.iterator ();
+    public static Iterator<Object[]> loginNegativeProvider() throws IOException {
+        return chooseDataFromFile("/LoginNegative.data");
     }
+    @DataProvider
+    public static Iterator<Object[]> loginPositiveProvider() throws IOException {
+        return chooseDataFromFile("/loginPositive.data");
+    }
+
+
+
+
+        public static Iterator<Object[]> chooseDataFromFile(String fileName) throws IOException {
+            BufferedReader in = new BufferedReader(new InputStreamReader(DataProviders.class.getResourceAsStream(fileName)));
+            List<Object[]> userData = new ArrayList<>();
+
+            for(String line = in.readLine(); line != null; line = in.readLine()) {
+                userData.add(line.split(";"));
+            }
+
+            in.close();
+            return userData.iterator();
+        }
+//************************************************************************//
 
     @DataProvider
     public static Iterator<Object[]> LoginList() {//вставляем значения сюда/создается лист для использования
@@ -61,7 +67,7 @@ public class DataProviders {
 
         return data.iterator();
     }
-
+    //*********************методы используются в randomUsers() @DataProvider****************************//
     private Object generateRandomPassword() {
         return "2345"+ (new Random ()).nextInt();
     }
@@ -69,7 +75,7 @@ public class DataProviders {
    //private Object generateRandomName() {
        // return  "Yana"+(new Random()).nextInt()+"@gmail.com";
    // }
-    private Object generateRandomName(int length){
+    private Object generateRandomName(int length){ //metod mail
         String str = "";
         int number;
         Random gen = new Random ();
@@ -82,4 +88,5 @@ public class DataProviders {
         }while(str.length()<length);
         return str+"@gmail.com";
     }
+
 }

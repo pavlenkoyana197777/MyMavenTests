@@ -12,9 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import java.net.URL;
 import java.util.Random;
 
-/**
- * Page7 class for TestNG-based test classes
- */
+
 public class TestNgTestPage {
 
   protected static URL gridHubUrl = null;

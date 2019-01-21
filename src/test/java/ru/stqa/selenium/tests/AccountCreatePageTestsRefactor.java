@@ -89,7 +89,7 @@ public class AccountCreatePageTestsRefactor extends TestNgTestPage {
    }
 
 
-    @Test(dataProviderClass = DataProviders.class,dataProvider = "CreateAccount")
+    @Test(dataProviderClass = DataProviders.class,dataProvider = "CreateAccountProvider")//***chooseDataFromFile
     public void createNewAccountProviders(String email,String password,String repPassword) {
 
         homePage.waitUntilPageLoad ().

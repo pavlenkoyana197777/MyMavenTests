@@ -17,7 +17,8 @@ public class LoginHelper extends Page {
     WebElement loginButton;
     @FindBy(xpath ="//div[@class='alert alert-danger ng-star-inserted']")
     WebElement alertText;
-
+    @FindBy(xpath = "//mat-icon[contains(text(),'email')]")
+    WebElement labelEmail;
 
 
     public LoginHelper(WebDriver driver) {
@@ -63,4 +64,14 @@ public class LoginHelper extends Page {
         return alertText.getText();
 
     }
+    public LoginHelper pressCancelButton(){
+        cancelButton.click();
+        return this;
+    }
+
+    public LoginHelper waitUntilWindowIsClosed(){//метод исчезания окна в базовом абсент элемент
+        waitUntilElementIsAbsent(driver, labelEmail,30);
+        return this;
+    }
+
 }

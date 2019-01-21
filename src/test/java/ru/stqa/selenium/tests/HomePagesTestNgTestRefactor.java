@@ -6,11 +6,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.selenium.pages.EventsAuthHelper;
 import ru.stqa.selenium.pages.HomeHelper;
+import ru.stqa.selenium.util.LogLog4j;
+
+import java.util.logging.Logger;
 
 
 public class HomePagesTestNgTestRefactor extends TestNgTestPage {
     HomeHelper homePage;
     EventsAuthHelper eventsUnAuthPage;
+    private static Logger Log = Logger.getLogger( LogLog4j.class.getName());
 
     @BeforeMethod
     public void initPage(){

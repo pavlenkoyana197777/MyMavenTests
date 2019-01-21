@@ -63,43 +63,4 @@ public class LoginPageTestsRefactor extends TestNgTestPage {
                 loginPage.getAlertText());
     }
 
-    @Test (dataProviderClass = DataProviders.class,dataProvider = "LoginList")//גв скобках название метода из DataPositive
-    public void loginPositive(String email,String password)  {
-        homePage.waitUntilPageLoad()
-                .pressLoginButton();
-        loginPage.waitUntilPageLoad()
-                .enterValueToFieldEmail(email)
-                .enterValueToFieldPassword(password)
-                .pressLogInButton();
-        eventsAuthPage.waitUntilPageLoad();
-        Assert.assertEquals("Menu", eventsAuthPage.getTooltipIconMenu());
-        Assert.assertEquals("Find event",eventsAuthPage.getHeader());
-        profilePage.menuButtonClick ();
-        menuPage.waitUntilPageLoad ()
-                .pressLogOutButton ();
-        homePage.waitUntilPageLoad ();
-       Assert.assertEquals ( homePage.getHeader (),"Shabbat in the family circle" );
-driver.quit ();
     }
-
-    @Test (dataProviderClass = DataProviders.class,dataProvider = "loginPositiveMaven")
-    public void loginPositiveMaven(String email,String password)  {
-         homePage.waitUntilPageLoad()
-                .pressLoginButton();
-        loginPage.waitUntilPageLoad()
-                .enterValueToFieldEmail(email)
-                .enterValueToFieldPassword(password)
-                .pressLogInButton();
-        eventsAuthPage.waitUntilPageLoad();
-        Assert.assertEquals("Menu", eventsAuthPage.getTooltipIconMenu());
-        Assert.assertEquals("Find event",eventsAuthPage.getHeader());
-        profilePage.menuButtonClick ();
-        menuPage.waitUntilPageLoad ()
-                .pressLogOutButton ();
-        homePage.waitUntilPageLoad ();
-        Assert.assertEquals ( homePage.getHeader (),"Shabbat in the family circle" );
-        driver.quit ();
-    }
-
-
-}
